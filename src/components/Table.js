@@ -1,6 +1,6 @@
 import React from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
-
+import data from "../database/data.json";
 function Table() {
   return (
     <div>
@@ -28,37 +28,47 @@ function Table() {
           </tr>
         </thead>
         <tbody className="bg-gray-200">
-          <tr className="bg-gray-50 text-center">
-            <td className="px-16 py-1 flex flex-row items-center">
-              <img src="#" alt="" />
-              <span className="text-center ml-2 font-semibold">Kirtan</span>
-            </td>
-            <td className="px-16 py-2">
-              <span>kirtanmchandak5@gmail.com</span>
-            </td>
-            <td className="px-16 py-2">
-              <span>$95,000</span>
-            </td>
-            <td className="px-16 py-2">
-              <span>20 Sep 2003</span>
-            </td>
-            <td className="px-16 py-2">
-              <button className="cursor bg-green-500 px-5 rounded-full">
-                <span>active</span>
-              </button>
-            </td>
-            <td className="px-16 py-2 flex justify-around gap-2">
-              <button className="cursor bg-blue-500 rounded-full py-1 px-1">
-                <BiEdit size={25} />
-              </button>
-              <button className="cursor bg-red-400 rounded-full py-1 px-1">
-                <BiTrash size={25} />
-              </button>
-            </td>
-          </tr>
+          {data.map((obj, i) => (
+            <Tr {...obj} key="i" />
+          ))}
         </tbody>
       </table>
     </div>
+  );
+}
+
+function Tr({ id, name, avatar, email, salary, date, status }) {
+  return (
+    <tr className="bg-gray-50 text-center">
+      <td className="px-16 py-1 flex flex-row items-center">
+        <img src={avatar || "#"} alt="" />
+        <span className="text-center ml-2 font-semibold">
+          {name || "unknown"}
+        </span>
+      </td>
+      <td className="px-16 py-2">
+        <span>{email || "unknown"}</span>
+      </td>
+      <td className="px-16 py-2">
+        <span>{salary || "unknown"}</span>
+      </td>
+      <td className="px-16 py-2">
+        <span>{date || "unknown"}</span>
+      </td>
+      <td className="px-16 py-2">
+        <button className="cursor bg-green-500 px-5 rounded-full">
+          <span>{status || "unknown"}</span>
+        </button>
+      </td>
+      <td className="px-16 py-2 flex justify-around gap-2">
+        <button className="cursor bg-blue-500 rounded-full py-1 px-1">
+          <BiEdit size={25} />
+        </button>
+        <button className="cursor bg-red-400 rounded-full py-1 px-1">
+          <BiTrash size={25} />
+        </button>
+      </td>
+    </tr>
   );
 }
 
