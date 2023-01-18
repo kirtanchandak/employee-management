@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import Table from "@/components/Table";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
               <AiOutlineUserAdd className="ml-1 mt-1" />
             </button>
           </div>
+        </div>
+        <div className="container mx-auto">
+          <Table />
         </div>
       </main>
     </>
