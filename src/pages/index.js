@@ -3,8 +3,14 @@ import styles from "../styles/Home.module.css";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import Table from "@/components/Table";
 import Form from "@/components/Form";
+import { useState } from "react";
 
 export default function Home() {
+  const [visible, setVisible] = useState(false);
+
+  const handler = () => {
+    setVisible(!visible);
+  };
   return (
     <>
       <Head>
@@ -20,19 +26,19 @@ export default function Home() {
           </h1>
           <div className="container mx-auto flex justify-between py-5 border-b">
             <div className="left flex gap-3 px-6">
-              <button className="flex bg-indigo-500 rounded-md px-2 py-1 cursor-pointer">
+              <button
+                className="flex bg-indigo-500 rounded-md px-2 py-1 cursor-pointer"
+                onClick={handler}
+              >
                 Add Employee
                 <AiOutlineUserAdd className="ml-1 mt-1" />
               </button>
             </div>
           </div>
-          <div className="container mx-auto py-5">
-            <Form />
-          </div>
 
-          <div className="container mx-auto">
-            <Table />
-          </div>
+          {visible ? <Form /> : <></>}
+
+          <div className="container mx-auto">{<Table />}</div>
         </main>
       </section>
     </>
