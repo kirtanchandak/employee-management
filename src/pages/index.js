@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import Table from "@/components/Table";
+import Form from "@/components/Form";
 
 export default function Home() {
   return (
@@ -12,22 +13,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1 className="text-xl md:text-5xl text-center font-extrabold py-10">
-          Emoployee Management
-        </h1>
-        <div className="container mx-auto flex justify-between py-5 border-b">
-          <div className="left flex gap-3 px-6">
-            <button className="flex bg-indigo-500 rounded-md px-2 py-1 cursor-pointer">
-              Add Employee
-              <AiOutlineUserAdd className="ml-1 mt-1" />
-            </button>
+      <section>
+        <main className={styles.main}>
+          <h1 className="text-xl md:text-5xl text-center font-extrabold py-10">
+            Emoployee Management
+          </h1>
+          <div className="container mx-auto flex justify-between py-5 border-b">
+            <div className="left flex gap-3 px-6">
+              <button className="flex bg-indigo-500 rounded-md px-2 py-1 cursor-pointer">
+                Add Employee
+                <AiOutlineUserAdd className="ml-1 mt-1" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="container mx-auto">
-          <Table />
-        </div>
-      </main>
+          <div className="container mx-auto py-5">
+            <Form />
+          </div>
+
+          <div className="container mx-auto">
+            <Table />
+          </div>
+        </main>
+      </section>
     </>
   );
 }
