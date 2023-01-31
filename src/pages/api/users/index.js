@@ -1,5 +1,6 @@
 import connectMongo from "@/database/connection";
-import { getUsers } from "@/database/controller";
+import { getUsers, putUser } from "@/database/controller";
+import { postUser } from "@/database/controller";
 
 export default async function handler(req, res) {
   connectMongo().catch(() =>
@@ -16,10 +17,10 @@ export default async function handler(req, res) {
       getUsers(req, res);
       break;
     case "POST":
-      res.status(200).json({ method, name: "POST Req" });
+      postUser(req, res);
       break;
     case "PUT":
-      res.status(200).json({ method, name: "PUT Req" });
+      putUser(req, res);
       break;
     case "DELETE":
       res.status(200).json({ method, name: "DELETE Req" });
