@@ -29,7 +29,7 @@ function Table() {
         </thead>
         <tbody className="bg-gray-200">
           {data.map((obj, i) => (
-            <Tr {...obj} key="i" />
+            <Tr {...obj} key={i} />
           ))}
         </tbody>
       </table>

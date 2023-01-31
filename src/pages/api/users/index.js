@@ -1,6 +1,5 @@
 import connectMongo from "@/database/connection";
 import { getUsers } from "@/database/controller";
-import { resolve } from "styled-jsx/css";
 
 export default async function handler(req, res) {
   connectMongo().catch(() =>
