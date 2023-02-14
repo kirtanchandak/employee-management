@@ -1,10 +1,13 @@
 import React from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
-import data from "../database/data.json";
 import { getUser } from "@/lib/helper";
+import { useQuery } from "react-query";
 
 function Table() {
-  getUser().then((res) => console.log(res));
+  const { isLoading, isError, data, error } = useQuery("users", getUser);
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
+
   return (
     <div>
       <table className="min-w-full table-auto">
@@ -63,7 +66,11 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
         <span>{date || "unknown"}</span>
       </td>
       <td className="px-16 py-2">
-        <button className="cursor bg-green-500 px-5 rounded-full">
+        <button
+          className={`cursor ${
+            status == "active" ? "bg-green-500" : "bg-red-500"
+          }  px-5 rounded-full`}
+        >
           <span>{status || "unknown"}</span>
         </button>
       </td>
