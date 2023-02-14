@@ -1,7 +1,10 @@
 import React from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import data from "../database/data.json";
+import { getUser } from "@/lib/helper";
+
 function Table() {
+  getUser().then((res) => console.log(res));
   return (
     <div>
       <table className="min-w-full table-auto">
@@ -41,7 +44,11 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-16 py-1 flex flex-row items-center">
-        <img src={avatar || "#"} alt="" />
+        <img
+          src={avatar || "#"}
+          alt=""
+          className="w-10 h-10 rounded-full object-cover"
+        />
         <span className="text-center ml-2 font-semibold">
           {name || "unknown"}
         </span>
