@@ -2,11 +2,10 @@ import React from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { getUsers } from "@/lib/helper";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleChangeAction } from "@/redux/reducer";
 
 function Table() {
-  const state = useSelector((state) => state);
-  console.log(state);
   const { isLoading, isError, data, error } = useQuery("users", getUsers);
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;
@@ -47,6 +46,12 @@ function Table() {
 }
 
 function Tr({ id, name, avatar, email, salary, date, status }) {
+  const dispatch = useDispatch();
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const onUpdate = () => {
+    dispatch(toggleChangeAction());
+    console.log(visible);
+  };
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-16 py-1 flex flex-row items-center">
@@ -78,7 +83,10 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
         </button>
       </td>
       <td className="px-16 py-2 flex justify-around gap-2">
-        <button className="cursor bg-blue-500 rounded-full py-1 px-1">
+        <button
+          className="cursor bg-blue-500 rounded-full py-1 px-1"
+          onClick={onUpdate}
+        >
           <BiEdit size={25} />
         </button>
         <button className="cursor bg-red-400 rounded-full py-1 px-1">
