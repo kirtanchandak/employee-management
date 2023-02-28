@@ -2,8 +2,11 @@ import React from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { getUsers } from "@/lib/helper";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 
 function Table() {
+  const state = useSelector((state) => state);
+  console.log(state);
   const { isLoading, isError, data, error } = useQuery("users", getUsers);
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;
